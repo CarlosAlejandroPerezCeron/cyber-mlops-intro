@@ -1,0 +1,14 @@
+# test_logs_processor.py
+from logs_processor import detect_intrusions
+
+def test_detect_intrusions_no_suspicious():
+    logs = ["User logged in", "System normal"]
+    assert detect_intrusions(logs) == 0
+
+def test_detect_intrusions_with_suspicious():
+    logs = [
+        "intrusion attempt from 10.0.0.5",
+        "regular traffic",
+        "malware detected"
+    ]
+    assert detect_intrusions(logs) == 2
